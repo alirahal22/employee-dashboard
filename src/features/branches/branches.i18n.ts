@@ -4,6 +4,7 @@
  */
 export const branchesNameSpace = {
   en: {
+    BRANCHES: "Branches",
     ID: "ID",
     NAME: "Name",
     COUNTRY: "Country",

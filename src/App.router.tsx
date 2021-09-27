@@ -12,6 +12,7 @@ import { LoginComponent } from "&features/login/login.component";
 import { DepartmentsComponent } from "&features/departments/departments.component";
 import { AccountComponent } from "&features/account/account.component";
 import { BranchesComponent } from "&features/branches/branches.component";
+import { EmployeesComponent } from "&features/employees/employees.component";
 
 type ReduxProps = ConnectedProps<typeof connector>;
 
@@ -43,6 +44,14 @@ const AppRouter = (props: ReduxProps) => {
           exact
           path="/branches"
           component={BranchesComponent}
+          validator={isAuthenticated}
+          fallBack="/login"
+        />
+
+        <ProtectedRoute
+          exact
+          path="/employees"
+          component={EmployeesComponent}
           validator={isAuthenticated}
           fallBack="/login"
         />

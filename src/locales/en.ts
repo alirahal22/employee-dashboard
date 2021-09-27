@@ -4,6 +4,7 @@ import { landingNameSpace } from "&features/landing/landing.i18n";
 import { loginNameSpace } from "&features/login/login.i18n";
 import { departmentsNameSpace } from "&features/departments/departments.i18n";
 import { branchesNameSpace } from "&features/branches/branches.i18n";
+import { employeesNameSpace } from "&features/employees/employees.i18n";
 
 /**
  * English translation resources.
@@ -15,6 +16,7 @@ let en = {
   account: accountNameSpace.en,
   departments: departmentsNameSpace.en,
   branches: branchesNameSpace.en,
+  employees: employeesNameSpace.en,
 
   common: {
     // Commands
@@ -58,6 +60,8 @@ let en = {
     HELP: "HELP",
     REQUEST_ROLLS: "Request Rolls",
     DEPARTMENTS: "Departments",
+    BRANCHES: "Branches",
+    EMPLOYEES: "Employees",
     SETTINGS: "Settings",
     SUPPORT: "Support",
 

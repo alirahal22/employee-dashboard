@@ -52,6 +52,15 @@ const AppSider = (props: ReduxProps) => {
           >
             {t("BRANCHES")}
           </Item>
+          <Item
+            key="/employees"
+            icon={<Settings />}
+            onClick={() => {
+              push("/employees");
+            }}
+          >
+            {t("EMPLOYEES")}
+          </Item>
         </ItemGroup>
       </SideMenu>
       <SideMenu collapsedWidth={COLLAPSED_WIDTH} selectedKeys={[pathname]}>
