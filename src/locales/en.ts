@@ -3,6 +3,7 @@ import { accountNameSpace } from "&features/account/account.i18n";
 import { landingNameSpace } from "&features/landing/landing.i18n";
 import { loginNameSpace } from "&features/login/login.i18n";
 import { departmentsNameSpace } from "&features/departments/departments.i18n";
+import { branchesNameSpace } from "&features/branches/branches.i18n";
 
 /**
  * English translation resources.
@@ -13,6 +14,7 @@ let en = {
   landing: landingNameSpace.en,
   account: accountNameSpace.en,
   departments: departmentsNameSpace.en,
+  branches: branchesNameSpace.en,
 
   common: {
     // Commands

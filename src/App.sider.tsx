@@ -38,10 +38,19 @@ const AppSider = (props: ReduxProps) => {
             key="/"
             icon={<Settings />}
             onClick={() => {
-              push("/departments");
+              push("/");
             }}
           >
             {t("DEPARTMENTS")}
+          </Item>
+          <Item
+            key="/branches"
+            icon={<Settings />}
+            onClick={() => {
+              push("/branches");
+            }}
+          >
+            {t("BRANCHES")}
           </Item>
         </ItemGroup>
       </SideMenu>

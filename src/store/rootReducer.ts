@@ -5,6 +5,7 @@ import { loginReducer } from "&features/login/login.slice";
 import { landingReducer } from "&features/landing/landing.slice";
 import { accountReducer } from "&features/account/account.slice";
 import { departmentsReducer } from "&features/departments/departments.slice";
+import { branchesReducer } from "&features/branches/branches.slice";
 
 /**
  * Combines reducers of all slices and router into one root reducer
@@ -20,5 +21,6 @@ const createRootReducer = (routerReducer: Reducer) =>
     account: accountReducer,
 
     departments: departmentsReducer,
+    branches: branchesReducer,
   });
 export default createRootReducer;
