@@ -9,6 +9,7 @@ import { loginActions } from "&features/login/login.slice";
 import { SideMenu } from "&styled/menu/menu.component";
 
 import { ReactComponent as Settings } from "&assets/images/ic-settings.svg";
+import { ReactComponent as Employees } from "&assets/images/ic-employee.svg";
 
 type ReduxProps = ConnectedProps<typeof connector>;
 
@@ -54,7 +55,7 @@ const AppSider = (props: ReduxProps) => {
           </Item>
           <Item
             key="/employees"
-            icon={<Settings />}
+            icon={<Employees />}
             onClick={() => {
               push("/employees");
             }}
