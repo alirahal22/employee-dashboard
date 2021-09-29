@@ -32,7 +32,7 @@ const AppHeader = (props: ReduxProps) => {
   };
 
   const options = [
-    { label: t("DEPARTMENTS"), value: "department" },
+    { label: t("DEPARTMENTS"), value: "departments" },
     { label: t("BRANCHES"), value: "branches" },
     { label: t("EMPLOYEES"), value: "employees" },
     { label: t("SETTINGS"), value: "account" },

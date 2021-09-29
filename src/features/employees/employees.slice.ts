@@ -76,7 +76,7 @@ const getCities = createAsyncThunk(
 );
 
 const addEmployee = createAsyncThunk(
-  "clients/addClientStatus",
+  "employees/addEmployeeStatus",
   async (
     { _id, ...employee }: EmployeeRecord,
     { rejectWithValue, dispatch }
@@ -100,6 +100,23 @@ const addEmployee = createAsyncThunk(
     }
   }
 );
+
+const deleteEmployee = createAsyncThunk(
+  "employees/addEmployeeStatus",
+  async (id: string, { rejectWithValue, dispatch }) => {
+    try {
+      const pathname = "/employee/".concat(id);
+
+      // /** make api call */
+      await trackPromise(axios.delete(REACT_APP_BASE_URL.concat(pathname), {}));
+
+      return dispatch(getEmployees());
+    } catch (e) {
+      return rejectWithValue(e.response?.data);
+    }
+  }
+);
+
 const employeesSlice = createSlice({
   name: "employees",
   initialState: initialState,
@@ -174,6 +191,7 @@ export const employeesActions = {
   ...employeesSlice.actions,
   getEmployees,
   addEmployee,
+  deleteEmployee,
   getCountries,
   getCities,
 };

@@ -30,6 +30,7 @@ const EmployeesComponent = (props: ReduxProps) => {
     data,
     pending,
     getEmployees,
+    deleteEmployee,
     getDepartments,
     getBranches,
     setFormValues,
@@ -42,7 +43,7 @@ const EmployeesComponent = (props: ReduxProps) => {
     getDepartments();
     getBranches();
     getEmployees();
-  }, [getEmployees, getCountries, getDepartments, getBranches]);
+  }, [getEmployees, getCountries, getDepartments, getBranches, deleteEmployee]);
 
   useEffect(() => {
     setSearchableList(data);
@@ -93,10 +94,18 @@ const EmployeesComponent = (props: ReduxProps) => {
     setModalVisible(true);
   };
 
+  const onDeleteEmployee = (id: string) => {
+    console.log("Delete employee called");
+    deleteEmployee(id);
+  };
+
   const renderOptions = (id: string) => (
     <Menu>
       <Menu.Item key="1" onClick={() => onEditEmployee(id)}>
         {t("common:EDIT")}
+      </Menu.Item>
+      <Menu.Item key="2" onClick={() => onDeleteEmployee(id)}>
+        {t("common:DELETE")}
       </Menu.Item>
     </Menu>
   );
@@ -149,6 +158,7 @@ const mapStateToProps = (state: RootState) => ({
 
 const mapDispatchToProps = {
   getEmployees: employeesActions.getEmployees,
+  deleteEmployee: employeesActions.deleteEmployee,
   setFormValues: employeesActions.setFormValues,
   setModalVisible: employeesActions.setModalVisible,
   getCountries: employeesActions.getCountries,
