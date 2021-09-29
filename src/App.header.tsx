@@ -14,7 +14,6 @@ import { TopMenu } from "&styled/menu/menu.component";
 import { ReactComponent as MenuIcon } from "&assets/images/ic-menu.svg";
 import { ReactComponent as Collapse } from "&assets/images/ic-collapse.svg";
 import { ReactComponent as Translate } from "&assets/images/ic-translate.svg";
-import { ReactComponent as Notification } from "&assets/images/ic-notification.svg";
 
 type ReduxProps = ConnectedProps<typeof connector>;
 
@@ -33,7 +32,9 @@ const AppHeader = (props: ReduxProps) => {
   };
 
   const options = [
-    { label: t("DEPARTMENTS"), value: "" },
+    { label: t("DEPARTMENTS"), value: "department" },
+    { label: t("BRANCHES"), value: "branches" },
+    { label: t("EMPLOYEES"), value: "employees" },
     { label: t("SETTINGS"), value: "account" },
   ];
 
@@ -45,7 +46,7 @@ const AppHeader = (props: ReduxProps) => {
             {isMenuCollapsed ? <MenuIcon /> : <Collapse />}
           </LinkButton>
           <LinkButton onClick={() => push("/")}>
-            <div>{t("EMPLOYEE")}</div>
+            <div>{t("EMPLOYEE_DIRECTORY")}</div>
           </LinkButton>
         </Row>
 

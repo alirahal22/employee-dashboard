@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { Form, Input, Row, Space } from "antd";
+import { Form, Row, Space } from "antd";
 
 import { RootState } from "&store/store";
-import { formatPhone } from "&utils/format";
 import { employeesActions } from "./employees.slice";
 import { LinkButton, PrimaryButton } from "&styled/button/button.component";
 import { H2 } from "&styled/typography/typography.component";
@@ -58,7 +57,7 @@ const EmployeeModalComponent = (props: ReduxProps) => {
         onFinish={onFinish}
       >
         <H2>{id ? t("EMPLOYEE_ID", { id }) : t("ADD_EMPLOYEE")}</H2>
-        {/* <Row justify="space-between">
+        <Row justify="space-between">
           <Form.Item
             name="firstName"
             label={t("FIRST_NAME")}
@@ -72,7 +71,7 @@ const EmployeeModalComponent = (props: ReduxProps) => {
             ]}
           >
             <InputText
-              maxLength={20}
+              maxLength={30}
               placeholder={t("FIRST_NAME_PLACEHOLDER")}
             />
           </Form.Item>
@@ -89,7 +88,7 @@ const EmployeeModalComponent = (props: ReduxProps) => {
             ]}
           >
             <InputText
-              maxLength={20}
+              maxLength={30}
               placeholder={t("LAST_NAME_PLACEHOLDER")}
             />
           </Form.Item>
@@ -101,12 +100,29 @@ const EmployeeModalComponent = (props: ReduxProps) => {
             {
               required: true,
               message: t("common:REQUIRED_ERROR_MESSAGE", {
-                fieldName: t("LAST_NAME").toLowerCase(),
+                fieldName: t("EMAIL").toLowerCase(),
               }),
             },
           ]}
         >
-          <InputText maxLength={20} placeholder={t("LAST_NAME_PLACEHOLDER")} />
+          <InputText maxLength={20} placeholder={t("EMAIL_PLACEHOLDER")} />
+        </Form.Item>
+        <Form.Item
+          name="phone"
+          label={t("PHONE")}
+          rules={[
+            {
+              required: true,
+              message: t("common:REQUIRED_ERROR_MESSAGE", {
+                fieldName: t("PHONE").toLowerCase(),
+              }),
+            },
+          ]}
+        >
+          <InputText
+            maxLength={15}
+            placeholder={t("PHONE_NUMBER_PLACEHOLDER")}
+          />
         </Form.Item>
 
         <Row justify="space-between">
@@ -117,48 +133,31 @@ const EmployeeModalComponent = (props: ReduxProps) => {
               {
                 required: true,
                 message: t("common:REQUIRED_ERROR_MESSAGE", {
-                  fieldName: t("LAST_NAME").toLowerCase(),
+                  fieldName: t("SALARY").toLowerCase(),
                 }),
               },
             ]}
           >
-            <InputText
-              maxLength={20}
-              placeholder={t("LAST_NAME_PLACEHOLDER")}
-            />
+            <InputText maxLength={20} placeholder={t("SALARY_PLACEHOLDER")} />
           </Form.Item>
           <Form.Item
             name="annualLeaves"
-            label={t("ANUAL_LEAVES")}
+            label={t("ANNUAL_LEAVES")}
             rules={[
               {
                 required: true,
                 message: t("common:REQUIRED_ERROR_MESSAGE", {
-                  fieldName: t("LAST_NAME").toLowerCase(),
+                  fieldName: t("ANNUAL_LEAVES").toLowerCase(),
                 }),
               },
             ]}
           >
             <InputText
               maxLength={20}
-              placeholder={t("LAST_NAME_PLACEHOLDER")}
+              placeholder={t("ANNUAL_LEAVES_PLACEHOLDER")}
             />
           </Form.Item>
         </Row>
-        <Form.Item
-          name="phone"
-          label={t("PHONE")}
-          rules={[
-            {
-              required: true,
-              message: t("common:REQUIRED_ERROR_MESSAGE", {
-                fieldName: t("LAST_NAME").toLowerCase(),
-              }),
-            },
-          ]}
-        >
-          <InputText maxLength={20} placeholder={t("LAST_NAME_PLACEHOLDER")} />
-        </Form.Item>
         <Form.Item
           name="dateOfBirth"
           label={t("DATE_OF_BIRTH")}
@@ -166,7 +165,7 @@ const EmployeeModalComponent = (props: ReduxProps) => {
             {
               required: true,
               message: t("common:REQUIRED_ERROR_MESSAGE", {
-                fieldName: t("LAST_NAME").toLowerCase(),
+                fieldName: t("DATE_OF_BIRTH").toLowerCase(),
               }),
             },
           ]}
@@ -198,7 +197,7 @@ const EmployeeModalComponent = (props: ReduxProps) => {
             {
               required: true,
               message: t("common:REQUIRED_ERROR_MESSAGE", {
-                fieldName: t("DEPARTMENT").toLowerCase(),
+                fieldName: t("BRANCH").toLowerCase(),
               }),
             },
           ]}
@@ -208,7 +207,7 @@ const EmployeeModalComponent = (props: ReduxProps) => {
               <Option value={_id}>{name}</Option>
             ))}
           </Select>
-        </Form.Item> */}
+        </Form.Item>
 
         <Form.Item>
           <Row justify="center">

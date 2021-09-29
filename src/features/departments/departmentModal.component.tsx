@@ -1,16 +1,14 @@
 import React, { useEffect } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { Form, Input, Row, Space } from "antd";
+import { Form, Row, Space } from "antd";
 
 import { RootState } from "&store/store";
-import { formatPhone } from "&utils/format";
 import { departmentsActions } from "./departments.slice";
 import { LinkButton, PrimaryButton } from "&styled/button/button.component";
 import { H2 } from "&styled/typography/typography.component";
 import { RegularModal } from "&styled/modal/modal.component";
 import { InputText } from "&styled/input/input.component";
-import { CountryCodeSelect } from "&styled/select/select.component";
 
 type ReduxProps = ConnectedProps<typeof connector>;
 
@@ -66,7 +64,7 @@ const DepartmentModalComponent = (props: ReduxProps) => {
             },
           ]}
         >
-          <InputText maxLength={20} placeholder={t("NAME_PLACEHOLDER")} />
+          <InputText maxLength={30} placeholder={t("NAME_PLACEHOLDER")} />
         </Form.Item>
         <Form.Item
           name="description"

@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { Form, Input, Row, Space } from "antd";
+import { Form, Row, Space } from "antd";
 
 import { RootState } from "&store/store";
-import { formatPhone } from "&utils/format";
 import { branchesActions } from "./branches.slice";
 import { LinkButton, PrimaryButton } from "&styled/button/button.component";
 import { H2 } from "&styled/typography/typography.component";
@@ -79,7 +78,7 @@ const BranchModalComponent = (props: ReduxProps) => {
             },
           ]}
         >
-          <InputText maxLength={20} placeholder={t("NAME_PLACEHOLDER")} />
+          <InputText maxLength={30} placeholder={t("NAME_PLACEHOLDER")} />
         </Form.Item>
 
         <Form.Item
@@ -95,6 +94,7 @@ const BranchModalComponent = (props: ReduxProps) => {
           ]}
         >
           <Select
+            showSearch
             onChange={(value) => {
               setSelectedCountry(value);
             }}
@@ -116,7 +116,7 @@ const BranchModalComponent = (props: ReduxProps) => {
             },
           ]}
         >
-          <Select>
+          <Select showSearch>
             {cities?.length !== 0 &&
               cities.map((country) => (
                 <Option value={country}>{country}</Option>

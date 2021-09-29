@@ -159,6 +159,8 @@ const employeesSlice = createSlice({
       })
       .addCase(addEmployee.rejected, (state) => {
         state.pending = false;
+        console.log("Failed to add.");
+        message.error(i18n.t("employees:FAILED_TO_ADD"));
       })
       .addCase(addEmployee.pending, (state, { payload }) => {
         state.pending = true;

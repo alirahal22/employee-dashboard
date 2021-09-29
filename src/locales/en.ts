@@ -38,8 +38,12 @@ let en = {
     DOWNLOAD: "Download",
     VIEW: "View",
     USERNAME: "Username",
-    departments: "departments",
-    TRANSACTIONS: "Transactions",
+    EMPLOYEE_DIRECTORY: "Employee Directory",
+    DEPARTMENTS: "Departments",
+    BRANCHES: "Branches",
+    EMPLOYEES: "Employees",
+    SETTINGS: "Account",
+    SUPPORT: "Support",
 
     // Sections
     MAIN: "MAIN",
@@ -59,11 +63,6 @@ let en = {
     DOCUMENTATION: "Documentation",
     HELP: "HELP",
     REQUEST_ROLLS: "Request Rolls",
-    DEPARTMENTS: "Departments",
-    BRANCHES: "Branches",
-    EMPLOYEES: "Employees",
-    SETTINGS: "Account",
-    SUPPORT: "Support",
 
     // Labels
     EMAIL_LABEL: "Email address",

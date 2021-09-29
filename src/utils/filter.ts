@@ -27,7 +27,6 @@ export const filterBranchesOnChange = (
       store?.country?.toLowerCase().includes(query) ||
       store?.city?.toLowerCase().includes(query) ||
       store?._id?.toLowerCase().includes(query) ||
-      store?._id?.toLowerCase().includes(query) ||
       query === ""
   );
 };
@@ -43,7 +42,6 @@ export const filterEmployeesOnChange = (
       store?.lastName?.toLowerCase().includes(query) ||
       store?.email?.toLowerCase().includes(query) ||
       store?.phone?.toLowerCase().includes(query) ||
-      store?._id?.toLowerCase().includes(query) ||
       store?._id?.toLowerCase().includes(query) ||
       query === ""
   );

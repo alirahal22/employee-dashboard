@@ -58,13 +58,6 @@ const BranchesComponent = (props: ReduxProps) => {
       align: "left",
       sorter: (a, b) => a.city.localeCompare(b.name),
     },
-    {
-      title: "",
-      dataIndex: "options",
-      key: "options",
-      align: "center",
-      width: 50,
-    },
   ];
 
   const onEditBranch = (id: string) => {
