@@ -44,6 +44,9 @@ const AppHeader = (props: ReduxProps) => {
           <LinkButton onClick={() => toggleMenu()}>
             {isMenuCollapsed ? <MenuIcon /> : <Collapse />}
           </LinkButton>
+          <LinkButton onClick={() => push("/")}>
+            <div>{t("EMPLOYEE")}</div>
+          </LinkButton>
         </Row>
 
         <Row id="topbar" justify="space-between">
@@ -60,7 +63,6 @@ const AppHeader = (props: ReduxProps) => {
           </Col>
           <Col>
             <TopMenu>
-              <Item icon={<Notification />}></Item>
               <SubMenu icon={<Translate />}>
                 <Item
                   onClick={() => {
@@ -68,13 +70,6 @@ const AppHeader = (props: ReduxProps) => {
                   }}
                 >
                   English
-                </Item>
-                <Item
-                  onClick={() => {
-                    loadLanguage("ar");
-                  }}
-                >
-                  العربية
                 </Item>
               </SubMenu>
             </TopMenu>

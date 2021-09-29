@@ -62,7 +62,7 @@ let en = {
     DEPARTMENTS: "Departments",
     BRANCHES: "Branches",
     EMPLOYEES: "Employees",
-    SETTINGS: "Settings",
+    SETTINGS: "Account",
     SUPPORT: "Support",
 
     // Labels

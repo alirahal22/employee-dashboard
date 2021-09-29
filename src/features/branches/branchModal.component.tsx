@@ -69,27 +69,27 @@ const BranchModalComponent = (props: ReduxProps) => {
 
         <Form.Item
           name="name"
-          label={t("FIRST_NAME")}
+          label={t("NAME")}
           rules={[
             {
               required: true,
               message: t("common:REQUIRED_ERROR_MESSAGE", {
-                fieldName: t("FIRST_NAME").toLowerCase(),
+                fieldName: t("NAME").toLowerCase(),
               }),
             },
           ]}
         >
-          <InputText maxLength={20} placeholder={t("FIRST_NAME_PLACEHOLDER")} />
+          <InputText maxLength={20} placeholder={t("NAME_PLACEHOLDER")} />
         </Form.Item>
 
         <Form.Item
           name="country"
-          label={t("FIRST_NAME")}
+          label={t("COUNTRY")}
           rules={[
             {
               required: true,
               message: t("common:REQUIRED_ERROR_MESSAGE", {
-                fieldName: t("FIRST_NAME").toLowerCase(),
+                fieldName: t("COUNTRY").toLowerCase(),
               }),
             },
           ]}

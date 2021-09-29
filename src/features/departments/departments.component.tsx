@@ -44,7 +44,7 @@ const DepartmentsComponent = (props: ReduxProps) => {
 
   const columns: ColumnsType<DepartmentRecord> = [
     {
-      title: t("FIRST_NAME").toUpperCase(),
+      title: t("NAME").toUpperCase(),
       dataIndex: "name",
       key: "name",
       align: "left",

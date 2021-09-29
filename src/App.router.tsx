@@ -34,7 +34,7 @@ const AppRouter = (props: ReduxProps) => {
 
         <ProtectedRoute
           exact
-          path="/"
+          path={["/", "/departments"]}
           component={DepartmentsComponent}
           validator={isAuthenticated}
           fallBack="/login"

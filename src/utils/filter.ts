@@ -12,7 +12,6 @@ export const filterDepartmentsOnChange = (
     (store) =>
       store?.name?.toLowerCase().includes(query) ||
       store?._id?.toLowerCase().includes(query) ||
-      store?._id?.toLowerCase().includes(query) ||
       query === ""
   );
 };

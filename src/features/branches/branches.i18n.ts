@@ -10,12 +10,7 @@ export const branchesNameSpace = {
     COUNTRY: "Country",
     CITY: "City",
 
-    FIRST_NAME_PLACEHOLDER: "John",
-    LAST_NAME_PLACEHOLDER: "Doe",
-    EMAIL_PLACEHOLDER: "someone@example.com",
-    PHONE_NUMBER_PLACEHOLDER: "03112233",
-    CUSTOM_FIELD_1_PLACEHOLDER: "",
-    CUSTOM_FIELD_2_PLACEHOLDER: "",
+    NAME_PLACEHOLDER: "Branch name.",
 
     SEARCH_PLACEHOLDER: "Search by name, country, city",
   },
