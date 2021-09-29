@@ -78,10 +78,7 @@ const DepartmentModalComponent = (props: ReduxProps) => {
             },
           ]}
         >
-          <InputText
-            maxLength={20}
-            placeholder={t("DESCRIPTION_PLACEHOLDER")}
-          />
+          <InputText placeholder={t("DESCRIPTION_PLACEHOLDER")} />
         </Form.Item>
 
         <Form.Item>
