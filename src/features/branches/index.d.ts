@@ -5,6 +5,7 @@ export interface Branches {
   data: BranchRecord[];
   initialValues: any;
   pending: boolean;
+  selectedCountry: string;
   isModalVisible: boolean;
 }
 

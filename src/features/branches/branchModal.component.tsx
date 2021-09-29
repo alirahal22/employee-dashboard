@@ -10,7 +10,8 @@ import { LinkButton, PrimaryButton } from "&styled/button/button.component";
 import { H2 } from "&styled/typography/typography.component";
 import { RegularModal } from "&styled/modal/modal.component";
 import { InputText } from "&styled/input/input.component";
-import { CountryCodeSelect } from "&styled/select/select.component";
+import { Select, Option } from "&styled/select/select.component";
+import { employeesActions } from "&features/employees/employees.slice";
 
 type ReduxProps = ConnectedProps<typeof connector>;
 
@@ -19,15 +20,26 @@ const BranchModalComponent = (props: ReduxProps) => {
   const [form] = Form.useForm();
 
   const {
+    cities,
+    countries,
+    selectedCountry,
+    setSelectedCountry,
     isModalVisible,
     setModalVisible,
     initialValues,
     addBranch,
+    getCountries,
+    getCities,
     resetFormValues,
     pending,
   } = props;
 
   const { id } = initialValues;
+
+  useEffect(() => {
+    getCountries();
+    getCities({ country: selectedCountry });
+  }, [getCities, getCountries, selectedCountry]);
 
   useEffect(() => {
     if (isModalVisible) form.resetFields();
@@ -54,108 +66,62 @@ const BranchModalComponent = (props: ReduxProps) => {
         onFinish={onFinish}
       >
         <H2>{id ? t("BRANCH_ID", { id }) : t("ADD_BRANCH")}</H2>
-        <Row justify="space-between">
-          <Form.Item
-            name="firstName"
-            label={t("FIRST_NAME")}
-            rules={[
-              {
-                required: true,
-                message: t("common:REQUIRED_ERROR_MESSAGE", {
-                  fieldName: t("FIRST_NAME").toLowerCase(),
-                }),
-              },
-            ]}
-          >
-            <InputText
-              maxLength={20}
-              placeholder={t("FIRST_NAME_PLACEHOLDER")}
-            />
-          </Form.Item>
-          <Form.Item
-            name="lastName"
-            label={t("LAST_NAME")}
-            rules={[
-              {
-                required: true,
-                message: t("common:REQUIRED_ERROR_MESSAGE", {
-                  fieldName: t("LAST_NAME").toLowerCase(),
-                }),
-              },
-            ]}
-          >
-            <InputText placeholder={t("LAST_NAME_PLACEHOLDER")} />
-          </Form.Item>
-        </Row>
+
         <Form.Item
-          name="email"
-          label={t("EMAIL")}
+          name="name"
+          label={t("FIRST_NAME")}
           rules={[
             {
               required: true,
               message: t("common:REQUIRED_ERROR_MESSAGE", {
-                fieldName: t("common:EMAIL_LABEL").toLowerCase(),
-              }),
-            },
-            {
-              type: "email",
-              message: t("common:INVALID_ERROR_MESSAGE", {
-                fieldName: t("common:EMAIL_LABEL").toLowerCase(),
+                fieldName: t("FIRST_NAME").toLowerCase(),
               }),
             },
           ]}
         >
-          <InputText
-            autoComplete="email"
-            placeholder={t("EMAIL_PLACEHOLDER")}
-          />
+          <InputText maxLength={20} placeholder={t("FIRST_NAME_PLACEHOLDER")} />
         </Form.Item>
-        <Form.Item label={t("PHONE_NUMBER")} required>
-          <Input.Group compact>
-            <Form.Item name={["phone", "code"]} noStyle>
-              <CountryCodeSelect style={{ width: "35%" }} />
-            </Form.Item>
-            <Form.Item
-              name={["phone", "number"]}
-              validateFirst
-              normalize={formatPhone}
-              noStyle
-              rules={[
-                {
-                  required: true,
-                  message: t("common:REQUIRED_ERROR_MESSAGE", {
-                    fieldName: t("common:MOBILE_LABEL").toLowerCase(),
-                  }),
-                },
-                {
-                  pattern: /^(\+91-|\+91|0)?\d{6,15}$/,
-                  message: t("common:INVALID_ERROR_MESSAGE", {
-                    fieldName: t("common:MOBILE_LABEL").toLowerCase(),
-                  }),
-                },
-              ]}
-            >
-              <InputText
-                maxLength={12}
-                minLength={4}
-                autoComplete="phone"
-                placeholder={t("PHONE_NUMBER_PLACEHOLDER")}
-                style={{ width: "65%" }}
-              />
-            </Form.Item>
-          </Input.Group>
+
+        <Form.Item
+          name="country"
+          label={t("FIRST_NAME")}
+          rules={[
+            {
+              required: true,
+              message: t("common:REQUIRED_ERROR_MESSAGE", {
+                fieldName: t("FIRST_NAME").toLowerCase(),
+              }),
+            },
+          ]}
+        >
+          <Select
+            onChange={(value) => {
+              setSelectedCountry(value);
+            }}
+          >
+            {countries.map((country) => (
+              <Option value={country}>{country}</Option>
+            ))}
+          </Select>
         </Form.Item>
-        <Form.Item name="customField1" label={t("CUSTOM_FIELD_1")}>
-          <InputText
-            maxLength={32}
-            placeholder={t("CUSTOM_FIELD_1_PLACEHOLDER")}
-          />
-        </Form.Item>
-        <Form.Item name="customField2" label={t("CUSTOM_FIELD_2")}>
-          <InputText
-            maxLength={32}
-            placeholder={t("CUSTOM_FIELD_2_PLACEHOLDER")}
-          />
+        <Form.Item
+          name="city"
+          label={t("CITY")}
+          rules={[
+            {
+              required: true,
+              message: t("common:REQUIRED_ERROR_MESSAGE", {
+                fieldName: t("CITY").toLowerCase(),
+              }),
+            },
+          ]}
+        >
+          <Select>
+            {cities?.length !== 0 &&
+              cities.map((country) => (
+                <Option value={country}>{country}</Option>
+              ))}
+          </Select>
         </Form.Item>
         <Form.Item>
           <Row justify="center">
@@ -184,12 +150,18 @@ const BranchModalComponent = (props: ReduxProps) => {
 const mapStateToProps = (state: RootState) => ({
   isModalVisible: state.branches.isModalVisible,
   initialValues: state.branches.initialValues,
+  cities: state.employees.cities,
+  countries: state.employees.countries,
+  selectedCountry: state.branches.selectedCountry,
   pending: state.branches.pending,
 });
 
 const mapDispatchToProps = {
   addBranch: branchesActions.addBranch,
   resetFormValues: branchesActions.resetFormValues,
+  setSelectedCountry: branchesActions.setSelectedCountry,
+  getCountries: employeesActions.getCountries,
+  getCities: employeesActions.getCities,
   setModalVisible: branchesActions.setModalVisible,
 };
 

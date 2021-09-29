@@ -54,109 +54,38 @@ const DepartmentModalComponent = (props: ReduxProps) => {
         onFinish={onFinish}
       >
         <H2>{id ? t("DEPARTMENT_ID", { id }) : t("ADD_DEPARTMENT")}</H2>
-        <Row justify="space-between">
-          <Form.Item
-            name="firstName"
-            label={t("FIRST_NAME")}
-            rules={[
-              {
-                required: true,
-                message: t("common:REQUIRED_ERROR_MESSAGE", {
-                  fieldName: t("FIRST_NAME").toLowerCase(),
-                }),
-              },
-            ]}
-          >
-            <InputText
-              maxLength={20}
-              placeholder={t("FIRST_NAME_PLACEHOLDER")}
-            />
-          </Form.Item>
-          <Form.Item
-            name="lastName"
-            label={t("LAST_NAME")}
-            rules={[
-              {
-                required: true,
-                message: t("common:REQUIRED_ERROR_MESSAGE", {
-                  fieldName: t("LAST_NAME").toLowerCase(),
-                }),
-              },
-            ]}
-          >
-            <InputText placeholder={t("LAST_NAME_PLACEHOLDER")} />
-          </Form.Item>
-        </Row>
         <Form.Item
-          name="email"
-          label={t("EMAIL")}
+          name="name"
+          label={t("NAME")}
           rules={[
             {
               required: true,
               message: t("common:REQUIRED_ERROR_MESSAGE", {
-                fieldName: t("common:EMAIL_LABEL").toLowerCase(),
+                fieldName: t("NAME").toLowerCase(),
               }),
             },
+          ]}
+        >
+          <InputText maxLength={20} placeholder={t("NAME_PLACEHOLDER")} />
+        </Form.Item>
+        <Form.Item
+          name="description"
+          label={t("DESCRIPTION")}
+          rules={[
             {
-              type: "email",
-              message: t("common:INVALID_ERROR_MESSAGE", {
-                fieldName: t("common:EMAIL_LABEL").toLowerCase(),
+              required: true,
+              message: t("common:REQUIRED_ERROR_MESSAGE", {
+                fieldName: t("DESCRIPTION").toLowerCase(),
               }),
             },
           ]}
         >
           <InputText
-            autoComplete="email"
-            placeholder={t("EMAIL_PLACEHOLDER")}
+            maxLength={20}
+            placeholder={t("DESCRIPTION_PLACEHOLDER")}
           />
         </Form.Item>
-        <Form.Item label={t("PHONE_NUMBER")} required>
-          <Input.Group compact>
-            <Form.Item name={["phone", "code"]} noStyle>
-              <CountryCodeSelect style={{ width: "35%" }} />
-            </Form.Item>
-            <Form.Item
-              name={["phone", "number"]}
-              validateFirst
-              normalize={formatPhone}
-              noStyle
-              rules={[
-                {
-                  required: true,
-                  message: t("common:REQUIRED_ERROR_MESSAGE", {
-                    fieldName: t("common:MOBILE_LABEL").toLowerCase(),
-                  }),
-                },
-                {
-                  pattern: /^(\+91-|\+91|0)?\d{6,15}$/,
-                  message: t("common:INVALID_ERROR_MESSAGE", {
-                    fieldName: t("common:MOBILE_LABEL").toLowerCase(),
-                  }),
-                },
-              ]}
-            >
-              <InputText
-                maxLength={12}
-                minLength={4}
-                autoComplete="phone"
-                placeholder={t("PHONE_NUMBER_PLACEHOLDER")}
-                style={{ width: "65%" }}
-              />
-            </Form.Item>
-          </Input.Group>
-        </Form.Item>
-        <Form.Item name="customField1" label={t("CUSTOM_FIELD_1")}>
-          <InputText
-            maxLength={32}
-            placeholder={t("CUSTOM_FIELD_1_PLACEHOLDER")}
-          />
-        </Form.Item>
-        <Form.Item name="customField2" label={t("CUSTOM_FIELD_2")}>
-          <InputText
-            maxLength={32}
-            placeholder={t("CUSTOM_FIELD_2_PLACEHOLDER")}
-          />
-        </Form.Item>
+
         <Form.Item>
           <Row justify="center">
             <Space direction="horizontal" size="middle" align="center">

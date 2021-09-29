@@ -46,29 +46,25 @@ const getDepartments = createAsyncThunk(
 );
 
 const addDepartment = createAsyncThunk(
-  "clients/addClientStatus",
+  "departments/addDepartmentStatus",
   async (
-    { name, description, ...clientBody }: DepartmentRecord,
+    { name, description }: DepartmentRecord,
     { rejectWithValue, dispatch }
   ) => {
     try {
-      // const pathname = "/billing/client";
-      // const headers = { Accept: REACT_APP_ACCEPT_BILLING_V2 };
+      const pathname = "/department";
 
-      // /** Construct body */
-      // const body = {
-      //   firstName: firstName.trim(),
-      //   lastName: lastName.trim(),
-      //   email: email.toLowerCase().trim(),
-      //   ...clientBody,
-      // };
+      /** Construct body */
+      const body = {
+        name,
+        description,
+      };
+      console.log("body", body);
 
-      // /** make api call */
-      // await trackPromise(
-      //   axios.post(REACT_APP_BASE_URL.concat(pathname), body, {
-      //     headers,
-      //   })
-      // );
+      /** make api call */
+      await trackPromise(
+        axios.post(REACT_APP_BASE_URL.concat(pathname), body, {})
+      );
 
       return dispatch(getDepartments());
     } catch (e) {

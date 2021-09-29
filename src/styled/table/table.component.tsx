@@ -23,7 +23,6 @@ const TableComponent = ({ loading = false, ...props }: TableProps<any>) => {
       }}
       scroll={{ x: 500 }}
       loading={{ ...tableLoading, spinning: loading as boolean }}
-      exportable
       {...props}
     />
   );

@@ -10,6 +10,7 @@ const { REACT_APP_BASE_URL = "" } = process.env;
 
 const initialState: Branches = {
   data: [],
+  selectedCountry: "",
   initialValues: {
     id: undefined,
     email: "",
@@ -48,27 +49,21 @@ const getBranches = createAsyncThunk(
 const addBranch = createAsyncThunk(
   "clients/addClientStatus",
   async (
-    { name, ...clientBody }: BranchRecord,
+    { name, country, city }: BranchRecord,
     { rejectWithValue, dispatch }
   ) => {
     try {
-      // const pathname = "/billing/client";
-      // const headers = { Accept: REACT_APP_ACCEPT_BILLING_V2 };
+      const pathname = "/branch";
 
       // /** Construct body */
-      // const body = {
-      //   firstName: firstName.trim(),
-      //   lastName: lastName.trim(),
-      //   email: email.toLowerCase().trim(),
-      //   ...clientBody,
-      // };
+      const body = {
+        name,
+        country,
+        city,
+      };
 
       // /** make api call */
-      // await trackPromise(
-      //   axios.post(REACT_APP_BASE_URL.concat(pathname), body, {
-      //     headers,
-      //   })
-      // );
+      await trackPromise(axios.post(REACT_APP_BASE_URL.concat(pathname), body));
 
       return dispatch(getBranches());
     } catch (e) {
@@ -86,6 +81,9 @@ const branchesSlice = createSlice({
     },
     setFormValues: (state, { payload }) => {
       state.initialValues = { ...payload };
+    },
+    setSelectedCountry: (state, { payload }) => {
+      state.selectedCountry = payload;
     },
     resetFormValues: (state) => {
       state.initialValues = initialState.initialValues;

@@ -10,15 +10,9 @@ const { REACT_APP_BASE_URL = "" } = process.env;
 
 const initialState: Employees = {
   data: [],
-  initialValues: {
-    id: undefined,
-    email: "",
-    firstName: "",
-    lastName: "",
-    phone: { code: "961", number: "" },
-    customField1: undefined,
-    customField2: undefined,
-  },
+  countries: [],
+  cities: [],
+  initialValues: {},
   pending: false,
   isModalVisible: false,
 };
@@ -44,31 +38,61 @@ const getEmployees = createAsyncThunk(
     }
   }
 );
+const getCountries = createAsyncThunk(
+  "employees/getCountriesStatus",
+  async (_, { rejectWithValue }) => {
+    try {
+      /** make api call */
+      const response = await trackPromise(
+        axios.get("https://countriesnow.space/api/v0.1/countries/positions")
+      );
+
+      return response.data;
+    } catch (e) {
+      return rejectWithValue(e.response?.data);
+    }
+  }
+);
+const getCities = createAsyncThunk(
+  "employees/getCitiesStatus",
+  async ({ country }: any, { rejectWithValue, dispatch }) => {
+    try {
+      // /** Construct body */
+
+      const body = {
+        country,
+      };
+
+      // /** make api call */
+      const response = await trackPromise(
+        axios.post("https://countriesnow.space/api/v0.1/countries/cities", body)
+      );
+
+      return response.data;
+    } catch (e) {
+      return rejectWithValue(e.response?.data);
+    }
+  }
+);
 
 const addEmployee = createAsyncThunk(
   "clients/addClientStatus",
   async (
-    { firstName, lastName, ...clientBody }: EmployeeRecord,
+    { _id, ...employee }: EmployeeRecord,
     { rejectWithValue, dispatch }
   ) => {
     try {
-      // const pathname = "/billing/client";
-      // const headers = { Accept: REACT_APP_ACCEPT_BILLING_V2 };
+      const pathname = "/employee";
 
       // /** Construct body */
-      // const body = {
-      //   firstName: firstName.trim(),
-      //   lastName: lastName.trim(),
-      //   email: email.toLowerCase().trim(),
-      //   ...clientBody,
-      // };
+      const body = {
+        ...employee,
+      };
 
       // /** make api call */
-      // await trackPromise(
-      //   axios.post(REACT_APP_BASE_URL.concat(pathname), body, {
-      //     headers,
-      //   })
-      // );
+      await trackPromise(
+        axios.post(REACT_APP_BASE_URL.concat(pathname), body, {})
+      );
 
       return dispatch(getEmployees());
     } catch (e) {
@@ -105,6 +129,30 @@ const employeesSlice = createSlice({
       });
 
     builder
+      .addCase(getCountries.pending, (state) => {
+        state.pending = true;
+      })
+      .addCase(getCountries.rejected, (state) => {
+        state.pending = false;
+      })
+      .addCase(getCountries.fulfilled, (state, { payload }) => {
+        state.pending = false;
+        console.log(payload);
+        state.countries = payload.data.map(({ name }: any) => name);
+      });
+    builder
+      .addCase(getCities.pending, (state) => {
+        state.pending = true;
+      })
+      .addCase(getCities.rejected, (state) => {
+        state.pending = false;
+      })
+      .addCase(getCities.fulfilled, (state, { payload }) => {
+        state.pending = false;
+        state.cities = payload.data.map((name: any) => name);
+      });
+
+    builder
       .addCase(addEmployee.fulfilled, (state) => {
         state.pending = false;
         message.success(i18n.t("employees:EMPLOYEE_ADDED"));
@@ -124,4 +172,6 @@ export const employeesActions = {
   ...employeesSlice.actions,
   getEmployees,
   addEmployee,
+  getCountries,
+  getCities,
 };

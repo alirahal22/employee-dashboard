@@ -17,6 +17,8 @@ import { filterEmployeesOnChange } from "&utils/filter";
 
 import { ReactComponent as Options } from "&assets/images/ic-more.svg";
 import { ReactComponent as Plus } from "&assets/images/ic-plus-white.svg";
+import { departmentsActions } from "&features/departments/departments.slice";
+import { branchesActions } from "&features/branches/branches.slice";
 
 type ReduxProps = ConnectedProps<typeof connector>;
 
@@ -24,11 +26,23 @@ const EmployeesComponent = (props: ReduxProps) => {
   const { t } = useTranslation(["employees", "common"]); // Make sure namespace is added to locales
   const { promiseInProgress } = usePromiseTracker();
 
-  const { data, pending, getEmployees, setFormValues, setModalVisible } = props;
+  const {
+    data,
+    pending,
+    getEmployees,
+    getDepartments,
+    getBranches,
+    setFormValues,
+    setModalVisible,
+    getCountries,
+  } = props;
 
   useEffect(() => {
+    getCountries();
+    getDepartments();
+    getBranches();
     getEmployees();
-  }, [getEmployees]);
+  }, [getEmployees, getCountries, getDepartments, getBranches]);
 
   useEffect(() => {
     setSearchableList(data);
@@ -137,6 +151,9 @@ const mapDispatchToProps = {
   getEmployees: employeesActions.getEmployees,
   setFormValues: employeesActions.setFormValues,
   setModalVisible: employeesActions.setModalVisible,
+  getCountries: employeesActions.getCountries,
+  getDepartments: departmentsActions.getDepartments,
+  getBranches: branchesActions.getBranches,
 };
 
 const connector = connect(mapStateToProps, mapDispatchToProps);

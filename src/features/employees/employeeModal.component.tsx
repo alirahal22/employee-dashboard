@@ -9,8 +9,8 @@ import { employeesActions } from "./employees.slice";
 import { LinkButton, PrimaryButton } from "&styled/button/button.component";
 import { H2 } from "&styled/typography/typography.component";
 import { RegularModal } from "&styled/modal/modal.component";
-import { InputText } from "&styled/input/input.component";
-import { CountryCodeSelect } from "&styled/select/select.component";
+import { InputText, InputDate } from "&styled/input/input.component";
+import { Select, Option } from "&styled/select/select.component";
 
 type ReduxProps = ConnectedProps<typeof connector>;
 
@@ -19,6 +19,8 @@ const EmployeeModalComponent = (props: ReduxProps) => {
   const [form] = Form.useForm();
 
   const {
+    departments,
+    branches,
     isModalVisible,
     setModalVisible,
     initialValues,
@@ -32,6 +34,8 @@ const EmployeeModalComponent = (props: ReduxProps) => {
   useEffect(() => {
     if (isModalVisible) form.resetFields();
   }, [form, isModalVisible]);
+
+  useEffect(() => {}, [id]);
 
   const onFinish = async (values: any) => {
     await addEmployee(values);
@@ -54,7 +58,7 @@ const EmployeeModalComponent = (props: ReduxProps) => {
         onFinish={onFinish}
       >
         <H2>{id ? t("EMPLOYEE_ID", { id }) : t("ADD_EMPLOYEE")}</H2>
-        <Row justify="space-between">
+        {/* <Row justify="space-between">
           <Form.Item
             name="firstName"
             label={t("FIRST_NAME")}
@@ -84,7 +88,10 @@ const EmployeeModalComponent = (props: ReduxProps) => {
               },
             ]}
           >
-            <InputText placeholder={t("LAST_NAME_PLACEHOLDER")} />
+            <InputText
+              maxLength={20}
+              placeholder={t("LAST_NAME_PLACEHOLDER")}
+            />
           </Form.Item>
         </Row>
         <Form.Item
@@ -94,69 +101,115 @@ const EmployeeModalComponent = (props: ReduxProps) => {
             {
               required: true,
               message: t("common:REQUIRED_ERROR_MESSAGE", {
-                fieldName: t("common:EMAIL_LABEL").toLowerCase(),
-              }),
-            },
-            {
-              type: "email",
-              message: t("common:INVALID_ERROR_MESSAGE", {
-                fieldName: t("common:EMAIL_LABEL").toLowerCase(),
+                fieldName: t("LAST_NAME").toLowerCase(),
               }),
             },
           ]}
         >
-          <InputText
-            autoComplete="email"
-            placeholder={t("EMAIL_PLACEHOLDER")}
-          />
+          <InputText maxLength={20} placeholder={t("LAST_NAME_PLACEHOLDER")} />
         </Form.Item>
-        <Form.Item label={t("PHONE_NUMBER")} required>
-          <Input.Group compact>
-            <Form.Item name={["phone", "code"]} noStyle>
-              <CountryCodeSelect style={{ width: "35%" }} />
-            </Form.Item>
-            <Form.Item
-              name={["phone", "number"]}
-              validateFirst
-              normalize={formatPhone}
-              noStyle
-              rules={[
-                {
-                  required: true,
-                  message: t("common:REQUIRED_ERROR_MESSAGE", {
-                    fieldName: t("common:MOBILE_LABEL").toLowerCase(),
-                  }),
-                },
-                {
-                  pattern: /^(\+91-|\+91|0)?\d{6,15}$/,
-                  message: t("common:INVALID_ERROR_MESSAGE", {
-                    fieldName: t("common:MOBILE_LABEL").toLowerCase(),
-                  }),
-                },
-              ]}
-            >
-              <InputText
-                maxLength={12}
-                minLength={4}
-                autoComplete="phone"
-                placeholder={t("PHONE_NUMBER_PLACEHOLDER")}
-                style={{ width: "65%" }}
-              />
-            </Form.Item>
-          </Input.Group>
+
+        <Row justify="space-between">
+          <Form.Item
+            name="salary"
+            label={t("SALARY")}
+            rules={[
+              {
+                required: true,
+                message: t("common:REQUIRED_ERROR_MESSAGE", {
+                  fieldName: t("LAST_NAME").toLowerCase(),
+                }),
+              },
+            ]}
+          >
+            <InputText
+              maxLength={20}
+              placeholder={t("LAST_NAME_PLACEHOLDER")}
+            />
+          </Form.Item>
+          <Form.Item
+            name="annualLeaves"
+            label={t("ANUAL_LEAVES")}
+            rules={[
+              {
+                required: true,
+                message: t("common:REQUIRED_ERROR_MESSAGE", {
+                  fieldName: t("LAST_NAME").toLowerCase(),
+                }),
+              },
+            ]}
+          >
+            <InputText
+              maxLength={20}
+              placeholder={t("LAST_NAME_PLACEHOLDER")}
+            />
+          </Form.Item>
+        </Row>
+        <Form.Item
+          name="phone"
+          label={t("PHONE")}
+          rules={[
+            {
+              required: true,
+              message: t("common:REQUIRED_ERROR_MESSAGE", {
+                fieldName: t("LAST_NAME").toLowerCase(),
+              }),
+            },
+          ]}
+        >
+          <InputText maxLength={20} placeholder={t("LAST_NAME_PLACEHOLDER")} />
         </Form.Item>
-        <Form.Item name="customField1" label={t("CUSTOM_FIELD_1")}>
-          <InputText
-            maxLength={32}
-            placeholder={t("CUSTOM_FIELD_1_PLACEHOLDER")}
-          />
+        <Form.Item
+          name="dateOfBirth"
+          label={t("DATE_OF_BIRTH")}
+          rules={[
+            {
+              required: true,
+              message: t("common:REQUIRED_ERROR_MESSAGE", {
+                fieldName: t("LAST_NAME").toLowerCase(),
+              }),
+            },
+          ]}
+        >
+          <InputDate />
         </Form.Item>
-        <Form.Item name="customField2" label={t("CUSTOM_FIELD_2")}>
-          <InputText
-            maxLength={32}
-            placeholder={t("CUSTOM_FIELD_2_PLACEHOLDER")}
-          />
+        <Form.Item
+          name="departmentId"
+          label={t("DEPARTMENT")}
+          rules={[
+            {
+              required: true,
+              message: t("common:REQUIRED_ERROR_MESSAGE", {
+                fieldName: t("DEPARTMENT").toLowerCase(),
+              }),
+            },
+          ]}
+        >
+          <Select>
+            {departments.map(({ _id, name }) => (
+              <Option value={_id}>{name}</Option>
+            ))}
+          </Select>
         </Form.Item>
+        <Form.Item
+          name="branchId"
+          label={t("BRANCH")}
+          rules={[
+            {
+              required: true,
+              message: t("common:REQUIRED_ERROR_MESSAGE", {
+                fieldName: t("DEPARTMENT").toLowerCase(),
+              }),
+            },
+          ]}
+        >
+          <Select>
+            {branches.map(({ _id, name }) => (
+              <Option value={_id}>{name}</Option>
+            ))}
+          </Select>
+        </Form.Item> */}
+
         <Form.Item>
           <Row justify="center">
             <Space direction="horizontal" size="middle" align="center">
@@ -182,8 +235,11 @@ const EmployeeModalComponent = (props: ReduxProps) => {
  * @param state
  */
 const mapStateToProps = (state: RootState) => ({
+  departments: state.departments.data,
+  branches: state.branches.data,
   isModalVisible: state.employees.isModalVisible,
   initialValues: state.employees.initialValues,
+  countries: state.employees.countries,
   pending: state.employees.pending,
 });
 
