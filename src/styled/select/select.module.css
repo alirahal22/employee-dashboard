@@ -1,0 +1,22 @@
+.select div {
+  border-top: none !important;
+  border-right: none !important;
+  border-left: none !important;
+  box-shadow: none !important;
+
+  border-radius: 0 !important;
+  padding: 4px 0 !important;
+  height: 38px !important;
+
+  font-family: Roboto-Regular;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.1px;
+}
+
+.select {
+  border-radius: 0 !important;
+}

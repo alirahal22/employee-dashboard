@@ -1,0 +1,36 @@
+.h1 {
+  font-family: Roboto-Medium !important;
+  font-size: 28px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.12px;
+  color: #171725;
+  margin-bottom: 30px;
+}
+
+.h2 {
+  font-family: Roboto-Medium !important;
+  font-size: 24px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.1px;
+  color: #171725;
+  margin-bottom: 30px;
+}
+
+.subtitle {
+  font-family: Roboto-Medium !important;
+  font-size: 24px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.1px;
+  text-align: center;
+  color: #696974;
+  margin-bottom: 0;
+}

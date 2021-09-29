@@ -1,0 +1,136 @@
+ul.side_menu,
+ul.side_menu .ant-menu-sub {
+  width: 100%;
+  background: transparent;
+  border: none;
+}
+
+/* Menu Item and Submenu Title */
+ul.side_menu .ant-menu-item,
+ul.side_menu .ant-menu-submenu-title {
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 52px !important;
+  background: transparent;
+  /* white-space: normal; */
+}
+
+ul.side_menu .ant-menu-item span,
+ul.side_menu .ant-menu-submenu-title span {
+  font-family: Roboto-Medium, Noto Kufi Arabic;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.1px;
+  color: #171725;
+  vertical-align: middle !important;
+}
+
+ul.side_menu .ant-menu-item-only-child {
+  font-family: Roboto-Regular, Noto Kufi Arabic;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.1px;
+  color: #171725;
+  vertical-align: middle !important;
+  padding-inline-start: 64px !important;
+}
+
+ul.side_menu .ant-menu-submenu-popup .ant-menu-item-only-child {
+  padding: 0 20px !important;
+}
+
+ul.side_menu.ant-menu .ant-menu-item-icon,
+ul.side_menu.ant-menu .ant-menu-submenu-title > svg {
+  vertical-align: middle !important;
+  width: 24px !important;
+  margin: 0 20px !important;
+}
+
+ul.side_menu .ant-menu-item-selected {
+  background: none !important;
+}
+
+ul.side_menu .ant-menu-item-selected::after {
+  content: none !important;
+}
+
+/* Marker before selected menu item */
+ul.side_menu .ant-menu-submenu-selected .ant-menu-submenu-title::before,
+ul.side_menu .ant-menu-item-selected:not(.ant-menu-item-only-child)::before {
+  content: url(../../assets/images/menu-selector.svg);
+  position: absolute;
+  top: 6px;
+}
+
+ul.side_menu.ant-menu-rtl
+  .ant-menu-submenu-selected
+  .ant-menu-submenu-title::before,
+ul.side_menu.ant-menu-rtl
+  .ant-menu-item-selected:not(.ant-menu-item-only-child)::before {
+  transform: scaleX(-1);
+}
+
+/* Selected menu items and submenu title text color  */
+.ant-menu-item-only-child.ant-menu-item-active,
+.ant-menu-item-only-child.ant-menu-item-selected,
+ul.side_menu .ant-menu-submenu-selected .ant-menu-submenu-title > span,
+ul.side_menu .ant-menu-item-selected span {
+  color: #24323e !important;
+  background-color: transparent !important;
+}
+
+/* Selected icons fill  */
+ul.side_menu .ant-menu-submenu-selected .ant-menu-submenu-title > svg > path,
+ul.side_menu .ant-menu-item-selected > svg > path {
+  fill: #24323e !important;
+}
+
+/* Submenu arrows */
+ul.side_menu .ant-menu-submenu:hover .ant-menu-submenu-arrow {
+  color: #24323e !important;
+}
+
+ul.side_menu .ant-menu-submenu .ant-menu-submenu-arrow {
+  color: #92929d !important;
+}
+
+/* Menu Itemgroup title */
+ul.side_menu.ant-menu-inline-collapsed .ant-menu-item-group-title {
+  visibility: collapse !important;
+}
+
+ul.side_menu.ant-menu .ant-menu-item-group-title {
+  padding: 0;
+  margin: 10px 20px;
+  font-family: Roboto-Meduim, Noto Kufi Arabic;
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 1px;
+  color: #92929d;
+}
+
+/* Top Menu */
+ul.top_menu {
+  height: 70px;
+  border: none;
+  background-color: transparent;
+}
+
+/* Menu Item and Submenu Title */
+ul.top_menu .ant-menu-item,
+ul.top_menu .ant-menu-submenu {
+  padding: 0 !important;
+  height: 52px !important;
+  background: transparent;
+  border: none !important;
+  vertical-align: middle !important;
+}

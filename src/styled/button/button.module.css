@@ -1,0 +1,74 @@
+.primary {
+  border-radius: 10px;
+  background-color: #24323e;
+  border-color: #24323e;
+
+  /* span */
+  font-family: Roboto-Meduim;
+  font-size: 12px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+}
+
+.secondary {
+  border-radius: 10px;
+  background-color: #f1f1f5;
+  border-color: #f1f1f5;
+
+  /* span */
+  font-family: Roboto-Meduim;
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #696974;
+}
+
+.primary svg,
+.secondary svg {
+  vertical-align: middle;
+}
+
+.primary:hover,
+.primary:active,
+.primary:focus {
+  background-color: #24323e;
+  border-color: #24323e;
+  opacity: 0.8;
+}
+
+.secondary:hover,
+.secondary:active,
+.secondary:focus {
+  background-color: #f1f1f5;
+  border-color: #f1f1f5;
+  color: #696974;
+  opacity: 0.8;
+}
+
+.link {
+  padding: 0;
+}
+
+.link > span {
+  color: #24323e;
+  font-family: Roboto-Medium;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.1px;
+}
+
+.link:hover > span {
+  text-decoration: underline !important;
+}

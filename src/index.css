@@ -1,0 +1,58 @@
+@font-face {
+  font-family: "Muli-Bold";
+  src: local("Muli-Bold"), url(./assets/fonts/Muli-Bold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Muli-ExtraBold";
+  src: local("Muli-ExtraBold"),
+    url(./assets/fonts/Muli-ExtraBold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Muli-SemiBold";
+  src: local("Muli-SemiBold"),
+    url(./assets/fonts/Muli-SemiBold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Muli";
+  src: local("Muli"), url(./assets/fonts/Muli.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Muli-Light";
+  src: local("Muli-Light"),
+    url(./assets/fonts/Muli-Light.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "HelveticaNeue-Bold";
+  src: local("HelveticaNeue-Bold"),
+    url(./assets/fonts/HelveticaNeue-Bold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Roboto-Regular";
+  src: local("Roboto-Regular"),
+    url(./assets/fonts/Roboto-Regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Roboto-Medium";
+  src: local("Roboto-Medium"),
+    url(./assets/fonts/Roboto-Medium.ttf) format("truetype");
+}
+@import url("https://fonts.googleapis.com/earlyaccess/notokufiarabic.css");
+
+* {
+  font-family: "Muli", "Noto Kufi Arabic", "Popins", "Roboto", "sans-serif";
+}
+
+:-webkit-autofill::first-line,
+:-webkit-autofill,
+:-webkit-autofill:hover,
+:-webkit-autofill:focus,
+:-webkit-autofill:active {
+  font-family: "Muli", "Noto Kufi Arabic", "Popins", "Roboto", "sans-serif";
+}

@@ -1,0 +1,110 @@
+.container {
+  width: 302px;
+  height: 155px;
+  padding: 10px 25px 20px 25px;
+  border-radius: 20px;
+  background-color: #ffffff;
+  user-select: none;
+  cursor: grab;
+}
+
+.container:active {
+  cursor: grabbing;
+}
+
+.drag {
+  width: 267px;
+  position: absolute;
+}
+
+.title {
+  font-family: Roboto-Meduim;
+  font-size: 16px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.1px;
+  color: #171725;
+  margin-top: 10px;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  font-family: Roboto-Regular;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.09px;
+  color: #b5b5be;
+  margin: 0;
+}
+
+.info {
+  margin: 7px 7px 0 7px;
+  height: 24px;
+  vertical-align: baseline;
+  z-index: 100;
+}
+
+.highlight {
+  font-family: Roboto-Meduim;
+  font-size: 28px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.12px;
+  color: #171725;
+  margin: 0;
+}
+
+.negative {
+  font-family: Roboto-Meduim;
+  font-size: 16px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.1px;
+  color: #fc5a5a;
+  margin: 10px 7px 10px 10px;
+}
+
+.positive {
+  font-family: Roboto-Meduim;
+  font-size: 16px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.1px;
+  color: #3dd598;
+  margin: 10px 7px 10px 10px;
+}
+
+.zero {
+  font-family: Roboto-Meduim;
+  font-size: 16px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.1px;
+  color: #171725;
+  margin: 10px 7px 10px 10px;
+}
+
+.note {
+  font-family: Roboto-Regular;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.1px;
+  color: #696974;
+  margin: 0;
+}

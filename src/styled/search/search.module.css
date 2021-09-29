@@ -1,0 +1,28 @@
+.bar {
+  vertical-align: super;
+}
+
+.bar .search {
+  border: none !important;
+  box-shadow: none !important;
+
+  min-width: 280px;
+  height: 38px;
+
+  font-family: Roboto-Regular;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.71;
+  letter-spacing: 0.1px;
+  color: #44444f;
+}
+
+.tablesearchbar {
+  height: 38px;
+  margin-bottom: 3.2%;
+  border-radius: 10px;
+  border: solid 1px #d3d3d3;
+  box-shadow: none !important;
+}

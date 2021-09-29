@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Lebanon",
+    "dial_code": "961",
+    "code": "LB"
+  },
+  {
+    "name": "Iraq",
+    "dial_code": "964",
+    "code": "IQ"
+  },
+  {
+    "name": "Egypt",
+    "dial_code": "20",
+    "code": "EG"
+  }
+]

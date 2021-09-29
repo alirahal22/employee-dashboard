@@ -1,0 +1,52 @@
+.layout {
+  min-height: 100vh;
+  flex: 1;
+  justify-content: center;
+  background-color: #fafafa;
+}
+
+.container {
+  box-shadow: 3px -5px 40px 0 rgba(205, 205, 212, 0.1);
+  border-radius: 50px;
+  background-color: #ffffff;
+}
+
+.branding {
+  padding: 48px;
+  padding-bottom: 24px;
+  border: solid 1px #f1f1f5;
+  background-color: #fafafb;
+  display: flex;
+  align-self: stretch;
+  border-start-start-radius: 50px;
+  border-end-start-radius: 50px;
+}
+
+.form {
+  padding: 60px;
+  align-self: stretch;
+  border-start-start-radius: 50px;
+  border-start-end-radius: 50px;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    border-radius: 0;
+  }
+
+  .branding {
+    border-radius: 0;
+  }
+
+  .form {
+    border-radius: 0;
+  }
+}
+
+.art {
+  width: 80.3%;
+}
+
+.space {
+  width: 100%;
+}
