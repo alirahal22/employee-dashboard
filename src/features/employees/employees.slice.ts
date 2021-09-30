@@ -102,7 +102,7 @@ const addEmployee = createAsyncThunk(
 );
 
 const deleteEmployee = createAsyncThunk(
-  "employees/addEmployeeStatus",
+  "employees/deleteEmployeeStatus",
   async (id: string, { rejectWithValue, dispatch }) => {
     try {
       const pathname = "/employee/".concat(id);
@@ -168,7 +168,6 @@ const employeesSlice = createSlice({
         state.pending = false;
         state.cities = payload.data.map((name: any) => name);
       });
-
     builder
       .addCase(addEmployee.fulfilled, (state) => {
         state.pending = false;
@@ -180,6 +179,19 @@ const employeesSlice = createSlice({
         message.error(i18n.t("employees:FAILED_TO_ADD"));
       })
       .addCase(addEmployee.pending, (state, { payload }) => {
+        state.pending = true;
+      });
+    builder
+      .addCase(deleteEmployee.fulfilled, (state) => {
+        state.pending = false;
+        message.success(i18n.t("employees:EMPLOYEE_DELETED"));
+      })
+      .addCase(deleteEmployee.rejected, (state) => {
+        state.pending = false;
+        console.log("Failed to add.");
+        message.error(i18n.t("employees:FAILED_TO_DELETE"));
+      })
+      .addCase(deleteEmployee.pending, (state, { payload }) => {
         state.pending = true;
       });
   },
