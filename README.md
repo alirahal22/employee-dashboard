@@ -10,30 +10,10 @@ This is a React.js template fully written in Typescript. The template is based o
 | :-------------------------:  | :--------------------------------------------------------: |
 |     `yarn install`           |    Downloads project dependencies                          |
 |     `yarn start`             |    Runs the app in the development mode                    |
-|     `yarn test`              |    Launches the test runner in the interactive watch mode  |
 |     `yarn build`             |    Builds the app for production to the build folder       |
 |     `yarn serve`             |    Starts a static server to serve production build        |
 |     `yarn electron-dev`      |    Runs as desktop app in dev mode                         |
 |     `yarn electron-pack`     |    Builds desktop app package                              |
-|     `yarn cli:install`       |    Downloads the interactive cli dependencies              |
-|     `yarn cli:create`        |    Generate template file/s using the cli tool             |
-
-## To Use Template
-
-* Change the current working directory to your local project (optional).
-* Go to your project's root directory.
-* Run `git remote set-url origin <your new project url>` to link remote project (if applies).
-* Inside [`package.json`](package.json), modify the folowing project settings:
-    * Set `"name": <your new project name>`
-    * Set `"description": <your new project description>` 
-* Inside [`public/electron.js`](public/electron.js), set `title: <your project window title>`
-* Run `yarn install` to install the dependencies.
-* Run `yarn start` to start development server.
-* Run `yarn cli:install` to install cli dependencies.
-* Run `yarn cli:create` to generate feature files or styled components.
-* Edit generated files (read about generated files in the [here](####cli))
-* To generate production build files, run `yarn build`
-
 ## Production
 * Web:
 
@@ -74,9 +54,7 @@ The project root directory structure is as follows:
 ```
 As mentioned before, following the "features" or "ducks" pattern organizes the folders in the following manner: 
 
-* [`/cli`](cli)         for the interactive cli that generates project template files.
 * [`/public`](public)         for public files
-* [`/readme`](readme)         for assets used in [`README.md`](README.md)
 * [`/src`](src)            for all source files
 * [`src/assets`](src/assets)      for assets (.png, .svg, etc ...)
 * [`src/config`](src/config)      for configuration files (colors, headers, strings, etc ...)
@@ -540,21 +518,6 @@ Other customized routing middlewares can be added based on usecases using the sa
 
 This folder includes general util files used throughout the project.
 
-
-#### cli
-
-The command line tool is used for generating styled components and feature files.
-
-Example
-
-![Drag Racing](./readme/cli.PNG)
-
-Notice that the `path` option enables nested styled component or nested features. For example, styled components reated to "forms" may all be under the same folder in styled.
-
-* For styled components, the cli tool generates `<filename>.component.tsx` and `<filename>.module.css` template files under `/styled/<customized path>/<filename>`
-
-* For features, the cli tool generates `<filename>.component.tsx`, `<filename>.slice.ts`, `<filename>.type.ts` ,`<filename>.module.css` and `<filename>.i18n.ts` template files under `/features/<customized path>/<filename>`
-
 ### path alias
 
 The template supports path aliases to shorten `import` statements. Ex : for accessing a deeply nested module from another, use `&<some module>/<some file>` instead of `../../<some module>/<some file>` and so on.
@@ -582,18 +545,4 @@ Note:
 - [ant-design](https://ant.design/) for responsive high quality reusable components and forms
 - [electron-packager](https://github.com/electron/electron-packager) to compile and package as desktop apps
 - fully functional components
-- cli tool to generate template files that follow project pattern.
 - path aliases to reduce import statements' length 
-
-## Note: Demo Files:
-
-To remove demo files:
-
-1. Delete `demo` folder from [`features`](src/features) folder
-2. Remove related reducers in the `combineReducers` function in [`rootReducer.ts`](src/store/rootReducer.ts)
-3. Remove routes that use demo components in [`App.tsx`](src/App.tsx)
-4. Verify that demo namespaces included in locale files under [`locales`](src/locales) folder are removed.
-5. Verify that [`App.tsx`](src/App.tsx) does not use demo reducers in connect.
-
-
-
