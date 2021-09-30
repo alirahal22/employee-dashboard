@@ -101,6 +101,32 @@ const addEmployee = createAsyncThunk(
   }
 );
 
+const updateEmployee = createAsyncThunk(
+  "employees/updateEmployeeStatus",
+  async (
+    { _id, ...employee }: EmployeeRecord,
+    { rejectWithValue, dispatch }
+  ) => {
+    try {
+      const pathname = `/employee/${_id}`;
+
+      // /** Construct body */
+      const body = {
+        ...employee,
+      };
+
+      // /** make api call */
+      await trackPromise(
+        axios.patch(REACT_APP_BASE_URL.concat(pathname), body, {})
+      );
+
+      return dispatch(getEmployees());
+    } catch (e) {
+      return rejectWithValue(e.response?.data);
+    }
+  }
+);
+
 const deleteEmployee = createAsyncThunk(
   "employees/deleteEmployeeStatus",
   async (id: string, { rejectWithValue, dispatch }) => {
@@ -175,10 +201,22 @@ const employeesSlice = createSlice({
       })
       .addCase(addEmployee.rejected, (state) => {
         state.pending = false;
-        console.log("Failed to add.");
         message.error(i18n.t("employees:FAILED_TO_ADD"));
       })
       .addCase(addEmployee.pending, (state, { payload }) => {
+        state.pending = true;
+      });
+
+    builder
+      .addCase(updateEmployee.fulfilled, (state) => {
+        state.pending = false;
+        message.success(i18n.t("employees:EMPLOYEE_UPDATED"));
+      })
+      .addCase(updateEmployee.rejected, (state) => {
+        state.pending = false;
+        message.error(i18n.t("employees:FAILED_TO_UPDATE"));
+      })
+      .addCase(updateEmployee.pending, (state, { payload }) => {
         state.pending = true;
       });
     builder
@@ -188,7 +226,6 @@ const employeesSlice = createSlice({
       })
       .addCase(deleteEmployee.rejected, (state) => {
         state.pending = false;
-        console.log("Failed to add.");
         message.error(i18n.t("employees:FAILED_TO_DELETE"));
       })
       .addCase(deleteEmployee.pending, (state, { payload }) => {
@@ -203,6 +240,7 @@ export const employeesActions = {
   ...employeesSlice.actions,
   getEmployees,
   addEmployee,
+  updateEmployee,
   deleteEmployee,
   getCountries,
   getCities,

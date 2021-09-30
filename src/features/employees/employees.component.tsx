@@ -101,9 +101,9 @@ const EmployeesComponent = (props: ReduxProps) => {
 
   const renderOptions = (id: string) => (
     <Menu>
-      {/* <Menu.Item key="1" onClick={() => onEditEmployee(id)}>
+      <Menu.Item key="1" onClick={() => onEditEmployee(id)}>
         {t("common:EDIT")}
-      </Menu.Item> */}
+      </Menu.Item>
       <Menu.Item key="2" onClick={() => onDeleteEmployee(id)}>
         {t("common:DELETE")}
       </Menu.Item>
