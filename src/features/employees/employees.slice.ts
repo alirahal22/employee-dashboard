@@ -101,8 +101,34 @@ const addEmployee = createAsyncThunk(
   }
 );
 
+const updateEmployee = createAsyncThunk(
+  "employees/updateEmployeeStatus",
+  async (
+    { _id, ...employee }: EmployeeRecord,
+    { rejectWithValue, dispatch }
+  ) => {
+    try {
+      const pathname = `/employee/${_id}`;
+
+      // /** Construct body */
+      const body = {
+        ...employee,
+      };
+
+      // /** make api call */
+      await trackPromise(
+        axios.patch(REACT_APP_BASE_URL.concat(pathname), body, {})
+      );
+
+      return dispatch(getEmployees());
+    } catch (e) {
+      return rejectWithValue(e.response?.data);
+    }
+  }
+);
+
 const deleteEmployee = createAsyncThunk(
-  "employees/addEmployeeStatus",
+  "employees/deleteEmployeeStatus",
   async (id: string, { rejectWithValue, dispatch }) => {
     try {
       const pathname = "/employee/".concat(id);
@@ -168,7 +194,6 @@ const employeesSlice = createSlice({
         state.pending = false;
         state.cities = payload.data.map((name: any) => name);
       });
-
     builder
       .addCase(addEmployee.fulfilled, (state) => {
         state.pending = false;
@@ -176,10 +201,34 @@ const employeesSlice = createSlice({
       })
       .addCase(addEmployee.rejected, (state) => {
         state.pending = false;
-        console.log("Failed to add.");
         message.error(i18n.t("employees:FAILED_TO_ADD"));
       })
       .addCase(addEmployee.pending, (state, { payload }) => {
+        state.pending = true;
+      });
+
+    builder
+      .addCase(updateEmployee.fulfilled, (state) => {
+        state.pending = false;
+        message.success(i18n.t("employees:EMPLOYEE_UPDATED"));
+      })
+      .addCase(updateEmployee.rejected, (state) => {
+        state.pending = false;
+        message.error(i18n.t("employees:FAILED_TO_UPDATE"));
+      })
+      .addCase(updateEmployee.pending, (state, { payload }) => {
+        state.pending = true;
+      });
+    builder
+      .addCase(deleteEmployee.fulfilled, (state) => {
+        state.pending = false;
+        message.success(i18n.t("employees:EMPLOYEE_DELETED"));
+      })
+      .addCase(deleteEmployee.rejected, (state) => {
+        state.pending = false;
+        message.error(i18n.t("employees:FAILED_TO_DELETE"));
+      })
+      .addCase(deleteEmployee.pending, (state, { payload }) => {
         state.pending = true;
       });
   },
@@ -191,6 +240,7 @@ export const employeesActions = {
   ...employeesSlice.actions,
   getEmployees,
   addEmployee,
+  updateEmployee,
   deleteEmployee,
   getCountries,
   getCities,

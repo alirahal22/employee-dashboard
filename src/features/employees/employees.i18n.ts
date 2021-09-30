@@ -14,6 +14,7 @@ export const employeesNameSpace = {
     DEPARTMENT: "Department",
     BRANCH: "Branch",
     ADD_EMPLOYEE: "New Employee",
+    EDIT_EMPLOYEE: "Edit Employee",
     EMPLOYEE_ID: "Employee ID: {{id}}",
 
     FIRST_NAME_PLACEHOLDER: "John",
@@ -25,6 +26,8 @@ export const employeesNameSpace = {
 
     EMPLOYEE_ADDED: "Succesfully added new employee.",
     FAILED_TO_ADD: "Failed to add employee.",
+    FAILED_TO_UPDATE: "Failed to add update.",
+    FAILED_TO_DELETE: "Failed to add employee.",
     EMPLOYEE_LIST_UPDATED: "Successfully imported employee list.",
     EMPLOYEE_UPDATED: "Succesfully updated employee.",
     EMPLOYEE_DELETED: "Succesfully deleted employee.",

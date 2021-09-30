@@ -56,6 +56,13 @@ const DepartmentsComponent = (props: ReduxProps) => {
       key: "description",
       align: "left",
     },
+    {
+      title: "",
+      dataIndex: "options",
+      key: "options",
+      align: "center",
+      width: 50,
+    },
   ];
 
   const onEditDepartment = (id: string) => {

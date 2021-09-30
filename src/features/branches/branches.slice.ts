@@ -71,6 +71,30 @@ const addBranch = createAsyncThunk(
     }
   }
 );
+
+const updateBranch = createAsyncThunk(
+  "branches/updateBranchStatus",
+  async ({ _id, name }: BranchRecord, { rejectWithValue, dispatch }) => {
+    try {
+      const pathname = `/branch/${_id}`;
+
+      // /** Construct body */
+      const body = {
+        name,
+      };
+
+      // /** make api call */
+      await trackPromise(
+        axios.patch(REACT_APP_BASE_URL.concat(pathname), body)
+      );
+
+      return dispatch(getBranches());
+    } catch (e) {
+      return rejectWithValue(e.response?.data);
+    }
+  }
+);
+
 const branchesSlice = createSlice({
   name: "branches",
   initialState: initialState,
@@ -113,6 +137,19 @@ const branchesSlice = createSlice({
       .addCase(addBranch.pending, (state, { payload }) => {
         state.pending = true;
       });
+
+    builder
+      .addCase(updateBranch.fulfilled, (state) => {
+        state.pending = false;
+        message.success(i18n.t("departments:DEPARTMENT_UPDATED"));
+      })
+      .addCase(updateBranch.rejected, (state) => {
+        state.pending = false;
+        message.error(i18n.t("departments:FAILED_TO_UPDATE"));
+      })
+      .addCase(updateBranch.pending, (state, { payload }) => {
+        state.pending = true;
+      });
   },
 });
 
@@ -122,4 +159,5 @@ export const branchesActions = {
   ...branchesSlice.actions,
   getBranches,
   addBranch,
+  updateBranch,
 };

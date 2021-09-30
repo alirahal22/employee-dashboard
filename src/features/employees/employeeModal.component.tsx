@@ -10,6 +10,7 @@ import { H2 } from "&styled/typography/typography.component";
 import { RegularModal } from "&styled/modal/modal.component";
 import { InputText, InputDate } from "&styled/input/input.component";
 import { Select, Option } from "&styled/select/select.component";
+import moment from "moment";
 
 type ReduxProps = ConnectedProps<typeof connector>;
 
@@ -24,26 +25,31 @@ const EmployeeModalComponent = (props: ReduxProps) => {
     setModalVisible,
     initialValues,
     addEmployee,
+    updateEmployee,
     resetFormValues,
     pending,
   } = props;
 
-  const { id } = initialValues;
+  const { _id } = initialValues;
 
   useEffect(() => {
     if (isModalVisible) form.resetFields();
   }, [form, isModalVisible]);
 
-  useEffect(() => {}, [id]);
+  useEffect(() => {}, [_id]);
 
   const onFinish = async (values: any) => {
-    await addEmployee(values);
+    _id ? await updateEmployee({ _id, ...values }) : await addEmployee(values);
     onClose();
   };
 
   const onClose = () => {
     resetFormValues();
     setModalVisible(false);
+  };
+
+  const handleDateFormat = ({ dateOfBirth, ...values }: any) => {
+    return { dateOfBirth: moment(dateOfBirth), ...values };
   };
 
   return (
@@ -53,10 +59,10 @@ const EmployeeModalComponent = (props: ReduxProps) => {
         name="employee"
         layout="vertical"
         requiredMark={"optional"}
-        initialValues={initialValues}
+        initialValues={handleDateFormat(initialValues)}
         onFinish={onFinish}
       >
-        <H2>{id ? t("EMPLOYEE_ID", { id }) : t("ADD_EMPLOYEE")}</H2>
+        <H2>{_id ? t("EDIT_EMPLOYEE", { _id }) : t("ADD_EMPLOYEE")}</H2>
         <Row justify="space-between">
           <Form.Item
             name="firstName"
@@ -219,7 +225,7 @@ const EmployeeModalComponent = (props: ReduxProps) => {
                 block={false}
                 htmlType="submit"
               >
-                {t(id ? "common:UPDATE" : "common:CREATE")}
+                {t(_id ? "common:UPDATE" : "common:CREATE")}
               </PrimaryButton>
             </Space>
           </Row>
@@ -244,6 +250,7 @@ const mapStateToProps = (state: RootState) => ({
 
 const mapDispatchToProps = {
   addEmployee: employeesActions.addEmployee,
+  updateEmployee: employeesActions.updateEmployee,
   resetFormValues: employeesActions.resetFormValues,
   setModalVisible: employeesActions.setModalVisible,
 };
