@@ -72,6 +72,34 @@ const addDepartment = createAsyncThunk(
     }
   }
 );
+
+const updateDepartment = createAsyncThunk(
+  "departments/updateDepartmentStatus",
+  async (
+    { _id, name, description }: DepartmentRecord,
+    { rejectWithValue, dispatch }
+  ) => {
+    try {
+      const pathname = `/department/${_id}`;
+
+      /** Construct body */
+      const body = {
+        name,
+        description,
+      };
+
+      /** make api call */
+      await trackPromise(
+        axios.patch(REACT_APP_BASE_URL.concat(pathname), body, {})
+      );
+
+      return dispatch(getDepartments());
+    } catch (e) {
+      return rejectWithValue(e.response?.data);
+    }
+  }
+);
+
 const departmentsSlice = createSlice({
   name: "departments",
   initialState: initialState,
@@ -107,8 +135,22 @@ const departmentsSlice = createSlice({
       })
       .addCase(addDepartment.rejected, (state) => {
         state.pending = false;
+        message.error(i18n.t("departments:FAILED_TO_ADD"));
       })
       .addCase(addDepartment.pending, (state, { payload }) => {
+        state.pending = true;
+      });
+
+    builder
+      .addCase(updateDepartment.fulfilled, (state) => {
+        state.pending = false;
+        message.success(i18n.t("departments:DEPARTMENT_UPDATED"));
+      })
+      .addCase(updateDepartment.rejected, (state) => {
+        state.pending = false;
+        message.error(i18n.t("departments:FAILED_TO_UPDATE"));
+      })
+      .addCase(updateDepartment.pending, (state, { payload }) => {
         state.pending = true;
       });
   },
@@ -120,4 +162,5 @@ export const departmentsActions = {
   ...departmentsSlice.actions,
   getDepartments,
   addDepartment,
+  updateDepartment,
 };

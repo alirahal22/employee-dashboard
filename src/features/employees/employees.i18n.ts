@@ -14,6 +14,7 @@ export const employeesNameSpace = {
     DEPARTMENT: "Department",
     BRANCH: "Branch",
     ADD_EMPLOYEE: "New Employee",
+    EDIT_EMPLOYEE: "Edit Employee",
     EMPLOYEE_ID: "Employee ID: {{id}}",
 
     FIRST_NAME_PLACEHOLDER: "John",

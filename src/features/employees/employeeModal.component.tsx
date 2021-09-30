@@ -62,7 +62,7 @@ const EmployeeModalComponent = (props: ReduxProps) => {
         initialValues={handleDateFormat(initialValues)}
         onFinish={onFinish}
       >
-        <H2>{_id ? t("EMPLOYEE_ID", { _id }) : t("ADD_EMPLOYEE")}</H2>
+        <H2>{_id ? t("EDIT_EMPLOYEE", { _id }) : t("ADD_EMPLOYEE")}</H2>
         <Row justify="space-between">
           <Form.Item
             name="firstName"

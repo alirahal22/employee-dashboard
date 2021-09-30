@@ -21,18 +21,21 @@ const DepartmentModalComponent = (props: ReduxProps) => {
     setModalVisible,
     initialValues,
     addDepartment,
+    updateDepartment,
     resetFormValues,
     pending,
   } = props;
 
-  const { id } = initialValues;
+  const { _id } = initialValues;
 
   useEffect(() => {
     if (isModalVisible) form.resetFields();
   }, [form, isModalVisible]);
 
   const onFinish = async (values: any) => {
-    await addDepartment(values);
+    _id
+      ? await updateDepartment({ _id, ...values })
+      : await addDepartment(values);
     onClose();
   };
 
@@ -51,7 +54,7 @@ const DepartmentModalComponent = (props: ReduxProps) => {
         initialValues={initialValues}
         onFinish={onFinish}
       >
-        <H2>{id ? t("DEPARTMENT_ID", { id }) : t("ADD_DEPARTMENT")}</H2>
+        <H2>{_id ? t("EDIT_DEPARTMENT", { _id }) : t("ADD_DEPARTMENT")}</H2>
         <Form.Item
           name="name"
           label={t("NAME")}
@@ -91,7 +94,7 @@ const DepartmentModalComponent = (props: ReduxProps) => {
                 block={false}
                 htmlType="submit"
               >
-                {t(id ? "common:UPDATE" : "common:CREATE")}
+                {t(_id ? "common:UPDATE" : "common:CREATE")}
               </PrimaryButton>
             </Space>
           </Row>
@@ -113,6 +116,7 @@ const mapStateToProps = (state: RootState) => ({
 
 const mapDispatchToProps = {
   addDepartment: departmentsActions.addDepartment,
+  updateDepartment: departmentsActions.updateDepartment,
   resetFormValues: departmentsActions.resetFormValues,
   setModalVisible: departmentsActions.setModalVisible,
 };
